@@ -17,11 +17,14 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
+group 'com.nesp.sdk.kotlin'
+version '1.0-alpha'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
 
-    api 'com.google.code.gson:gson:2.8.8'
+    api 'com.google.code.gson:gson:2.8.9'
     api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
 
     implementation files('libs/activation.jar', 'libs/additionnal.jar', 'libs/mail.jar')
