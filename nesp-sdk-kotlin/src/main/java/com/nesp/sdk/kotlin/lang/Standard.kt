@@ -27,13 +27,17 @@ import java.util.regex.Pattern
  * @time: Created 19-7-28 下午6:41
  **/
 
-/********************************     Boolean     **************************************/
+///////////////////////////////////////////////////////////////////////////
+// Boolean
+///////////////////////////////////////////////////////////////////////////
 
 fun Boolean.toInt() = if (this) 1 else 0
 
 fun Boolean.toBooleanString() = if (this) "true" else "false"
 
-/********************************     String     **************************************/
+///////////////////////////////////////////////////////////////////////////
+// String
+///////////////////////////////////////////////////////////////////////////
 
 fun String.toBoolean() = this == "true"
 
@@ -62,7 +66,9 @@ fun String.getCharAt(string: String, showTimes: Int): Int {
     return slashMatcher.start()
 }
 
-/********************************     ArrayList<>     **************************************/
+///////////////////////////////////////////////////////////////////////////
+// ArrayList<>
+///////////////////////////////////////////////////////////////////////////
 
 fun <E> List<E>.toArrayString(): String {
     var result = ""
@@ -73,7 +79,9 @@ fun <E> List<E>.toArrayString(): String {
     return result
 }
 
-/********************************     MutableList<>     **************************************/
+///////////////////////////////////////////////////////////////////////////
+// MutableList<>
+///////////////////////////////////////////////////////////////////////////
 
 fun <E> MutableList<E>.toArrayList(): ArrayList<E> {
     val result = arrayListOf<E>()
@@ -81,32 +89,34 @@ fun <E> MutableList<E>.toArrayList(): ArrayList<E> {
     return result
 }
 
-/********************************     Int     **************************************/
+///////////////////////////////////////////////////////////////////////////
+// Int
+///////////////////////////////////////////////////////////////////////////
 
 fun Int.toBoolean() = this == 1
 
+///////////////////////////////////////////////////////////////////////////
+// Object
+///////////////////////////////////////////////////////////////////////////
 
 val <T : Any> T.TAG: String
     get() {
         return javaClass.simpleName
     }
 
-
 fun <T : Any?> T.toJson(): String {
     return Gson().toJson(this) as String
 }
-
 
 fun <T : Any> T.fromJson(json: String): T {
     return Gson().fromJson(json, this::class.java)
 }
 
-
 /**
  * 三目
  */
 fun <T : Any> threeEyes(condition: Boolean, ifTrue: T, ifFalse: T): T =
-        if (condition) ifTrue else ifFalse
+    if (condition) ifTrue else ifFalse
 
 fun <T : Any> T.threeEyes(condition: Boolean, ifTrue: T.() -> Unit, ifFalse: T.() -> Unit): T {
     if (condition) ifTrue() else ifFalse()
@@ -114,8 +124,8 @@ fun <T : Any> T.threeEyes(condition: Boolean, ifTrue: T.() -> Unit, ifFalse: T.(
 }
 
 inline fun <T : Any> T.threeEyes(
-        condition: T.() -> Boolean, noinline ifTrue: (T.() -> Unit)? = null,
-        noinline ifFalse: (T.() -> Unit)? = null
+    condition: T.() -> Boolean, noinline ifTrue: (T.() -> Unit)? = null,
+    noinline ifFalse: (T.() -> Unit)? = null
 ): T {
     if (condition()) {
         ifTrue?.invoke(this)
@@ -147,4 +157,3 @@ fun <T : Any> Any?.castCanNull(): T? {
     if (this == null) return null
     return this as T
 }
-
