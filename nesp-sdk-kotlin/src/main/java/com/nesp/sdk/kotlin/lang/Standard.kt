@@ -153,7 +153,7 @@ fun <T : Any> Any?.castIfNull(ifNull: T): T {
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Any> Any?.castCanNull(): T? {
+fun <T : Any> Any?.castNullable(): T? {
     if (this == null) return null
     return this as T
 }
