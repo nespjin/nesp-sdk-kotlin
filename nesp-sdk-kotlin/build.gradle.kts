@@ -14,20 +14,30 @@
  * limitations under the License.
  */
 
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
+//apply plugin: 'java-library'
+//apply plugin: 'kotlin'
 
-group 'com.nesp.sdk.kotlin'
-version '1.0-alpha'
+group = "com.nesp.sdk.kotlin"
+version = "1.0-alpha"
+
+
+plugins {
+    id("org.jetbrains.kotlin.jvm") version ("2.1.0")
+    id("java")
+}
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
-
-    api 'com.google.code.gson:gson:2.8.9'
-    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
-
-    implementation files('libs/activation.jar', 'libs/additionnal.jar', 'libs/mail.jar')
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(libs.google.gson)
+    implementation(libs.squareup.okhttp3)
+    implementation(files("libs/activation.jar", "libs/additionnal.jar", "libs/mail.jar"))
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
+//
+//    api 'com.google.code.gson:gson:2.8.9'
+//    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
+//
+//    implementation files('libs/activation.jar', 'libs/additionnal.jar', 'libs/mail.jar')
 
 }
 
